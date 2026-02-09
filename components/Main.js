@@ -1,6 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
+import BackgroundCanvas from './BackgroundCanvas';
+import Image from "next/image";
+
 const Main = () => {
   const [screen, setScreen] = useState(1);
 
@@ -9,13 +12,13 @@ const Main = () => {
 
   // MOVE NO BUTTON ONLY ON CLICK
   const moveButton = () => {
-    const step = 100; // movement distance per click
+    const step = 100; 
 
     const directions = [
-      { x: step, y: 0 },    // right
-      { x: -step, y: 0 },   // left
-      { x: 0, y: step },    // down
-      { x: 0, y: -step },   // up
+      { x: step, y: 0 },    
+      { x: -step, y: 0 },   
+      { x: 0, y: step },   
+      { x: 0, y: -step },  
     ];
 
     const randomDir =
@@ -84,22 +87,27 @@ const Main = () => {
 
   return (
     <>
-    <section>
+    <section className="main-sec">
         <div className="container">
              {/* SCREEN 1 */}
                 <section className={`screen-1 screen ${screen === 1 ? "active" : ""}`}>
-                    <div className="heart" onClick={() => setScreen(2)}>
+                    {/* <div className="heart" onClick={() => setScreen(2)}>
                     ❤️
-                    <span className="heart-text">Touch Me</span>
-                    </div>
+                    <span className="heart-text">Touch Me</span> 
+                   
+                    </div>*/}
+                     <span  onClick={() => setScreen(2)}>click</span>
                 </section>
 
                 {/* SCREEN 2 */}
                 <section className={`screen-2 screen ${screen === 2 ? "active" : ""}`}>
+                      <BackgroundCanvas />
                    <div className="inner">
-                         <img className="flower-image" src="/images/Gemini_Generated.png" alt="women holding flowers" />
+                         {/* <img className="flower-image" src="/images/Gemini_Generated.png" alt="women holding flowers" /> */}
+                            <Image className="flower-image" src="/images/phone.webp" alt="women holding flowers" width={320} height={400} role="img" />
                         <div className="content">
-                                <h1>Will you be mine? 💖</h1>
+                                {/* <h1>Will you be mine? 💖</h1> */}
+                                <h1>Our Approach to Skin Health</h1>
                                 <div className="buttons" style={{ position: "relative" }}>
                                     <button className="btn-yes" onClick={() => setScreen(3)}>
                                         Yes
@@ -123,8 +131,9 @@ const Main = () => {
 
                 {/* SCREEN 3 */}
                 <section className={`screen-3 screen ${screen === 3 ? "active" : ""}`}>
+                  
                     <h1>🎉 Congratulations 🎉</h1>
-                    <p>“You made the right ✅ choice, babe! 😄💕”</p>
+                    {/* <p>“You made the right ✅ choice, babe! 😄💕”</p> */}
                     <img
                     src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExenM5bXpubG52bzFsdW85YXlzOG94N2Fzc2xpZ3ZuNHJwd3lxeHA0ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aQYR1p8saOQla/giphy.gif"
                     alt="celebration gif"
