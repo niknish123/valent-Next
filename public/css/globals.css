@@ -21,6 +21,10 @@ body {
 .main-sec{
   padding:100px 0;
   background: #111111;
+      height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .container{
   max-width:1100px;
@@ -44,7 +48,7 @@ body {
 
 /* HEART */
 .heart {
-font-size: clamp(120px, 5vw, 400px);
+font-size: clamp(120px, 20vw, 400px);
 max-width:800px;
 width:100%;
 margin:0 auto;
@@ -216,5 +220,9 @@ button.btn-no {
 }
 .screen-2 .inner .content {
     width: 100%;
+}
+.flower-image {
+    height: 300px;
+    object-fit: contain;
 }
 }
