@@ -106,7 +106,7 @@ const Main = () => {
                      
                             <Image className="flower-image" src="/images/Gemini_Generated.png" alt="women holding flowers" width={320} height={400} role="img" />
                         <div className="content">
-                                <h1>Will you be mine? 💖</h1>
+                                <h1>Will you be my Valentine? 💖</h1>
                                 
                                 <div className="buttons" style={{ position: "relative" }}>
                                     <button className="btn-yes" onClick={() => setScreen(3)}>
