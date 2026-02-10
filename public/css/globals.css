@@ -197,3 +197,10 @@ background: #111111;
     opacity: 0;
   }
 }
+
+@media (max-width:768px){
+  .screen-2 .inner{
+    flex-direction:column;
+    gap:16px;
+  }
+}
