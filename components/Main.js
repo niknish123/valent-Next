@@ -175,10 +175,25 @@ const Main = () => {
           <h1>🎉 Congratulations 🎉</h1>
           <p>“You made the right ✅ choice, babe! 😄💕”</p>
 
-          <img
+          {/* <img
             src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExenM5bXpubG52bzFsdW85YXlzOG94N2Fzc2xpZ3ZuNHJwd3lxeHA0ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aQYR1p8saOQla/giphy.gif"
             alt="celebration gif"
-          />
+          /> */}
+           <video
+              ref={videoRef}
+              className="flower-image"
+              width={320}
+              height={400}
+              playsInline
+              preload="auto"
+              controls={false}
+              onEnded={(e) => {
+                e.target.pause(); 
+              }}
+            >
+              <source src="/images/happy-dance.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
         </section>
 
       </div>
