@@ -6,10 +6,13 @@ import BackgroundCanvas from "./BackgroundCanvas";
 
 const Main = () => {
   const [screen, setScreen] = useState(1);
-  const videoRef = useRef(null);
+
+  // Separate refs for videos
+  const videoNoRef = useRef(null);
+  const videoCongratsRef = useRef(null);
 
   // =============================
-  // CONFETTI EFFECT (UNCHANGED)
+  // CONFETTI EFFECT
   // =============================
   useEffect(() => {
     if (screen === 3) {
@@ -77,12 +80,25 @@ const Main = () => {
   }, [screen]);
 
   // =============================
-  // VIDEO CONTROL FUNCTION
+  // VIDEO CONTROL
   // =============================
   useEffect(() => {
-    if (screen === 21 && videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play().catch((err) => {
+    // Stop both videos first
+    if (videoNoRef.current) videoNoRef.current.pause();
+    if (videoCongratsRef.current) videoCongratsRef.current.pause();
+
+    // Play Screen 21 video
+    if (screen === 21 && videoNoRef.current) {
+      videoNoRef.current.currentTime = 0;
+      videoNoRef.current.play().catch((err) => {
+        console.log("Autoplay blocked:", err);
+      });
+    }
+
+    // Play Screen 3 video
+    if (screen === 3 && videoCongratsRef.current) {
+      videoCongratsRef.current.currentTime = 0;
+      videoCongratsRef.current.play().catch((err) => {
         console.log("Autoplay blocked:", err);
       });
     }
@@ -142,16 +158,12 @@ const Main = () => {
 
           <div className="inner">
             <video
-              ref={videoRef}
+              ref={videoNoRef}
               className="flower-image"
               width={320}
               height={400}
               playsInline
               preload="auto"
-              controls={false}
-              onEnded={(e) => {
-                e.target.pause(); // stop after finishing
-              }}
             >
               <source src="/images/broom.mp4" type="video/mp4" />
               Your browser does not support the video tag.
@@ -175,25 +187,17 @@ const Main = () => {
           <h1>🎉 Congratulations 🎉</h1>
           <p>“You made the right ✅ choice, babe! 😄💕”</p>
 
-          {/* <img
-            src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExenM5bXpubG52bzFsdW85YXlzOG94N2Fzc2xpZ3ZuNHJwd3lxeHA0ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aQYR1p8saOQla/giphy.gif"
-            alt="celebration gif"
-          /> */}
-           <video
-              ref={videoRef}
-              className="flower-image"
-              width={320}
-              height={400}
-              playsInline
-              preload="auto"
-              controls={false}
-              onEnded={(e) => {
-                e.target.pause(); 
-              }}
-            >
-              <source src="/images/happy-dance.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+          <video
+            ref={videoCongratsRef}
+            className="flower-image"
+            width={320}
+            height={400}
+            playsInline
+            preload="auto"
+          >
+            <source src="/images/happy-dance.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </section>
 
       </div>
