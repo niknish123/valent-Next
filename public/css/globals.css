@@ -210,7 +210,7 @@ button.btn-no {
   }
 }
 @media (max-width:768px){
-  .screen-2 .inner{
+  .screen-2 .inner, .screen-21 .inner{
     flex-direction:column;
     gap:16px;
   }
@@ -222,6 +222,7 @@ button.btn-no {
     width: 100%;
 }
 .flower-image {
+  margin-top:38px;
     height: 300px;
     object-fit: contain;
 }
