@@ -20,7 +20,8 @@ body {
 }
 .main-sec{
   padding:100px 0;
-  background: #111111;
+  background: #ffffff;
+   /* background: #111111; */
       height: 100vh;
     display: flex;
     justify-content: center;
@@ -213,6 +214,9 @@ button.btn-no {
   .screen-2 .inner, .screen-21 .inner{
     flex-direction:column;
     gap:16px;
+  }
+  .screen-21 .inner .content{
+    margin-top:24px;
   }
   .screen-2 image{
   width: 100%;

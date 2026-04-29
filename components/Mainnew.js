@@ -1,0 +1,177 @@
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import BackgroundCanvas from "./BackgroundCanvas";
+
+const Mainnew = () => {
+  const [screen, setScreen] = useState(1);
+
+  // Separate refs for videos
+  const videoNoRef = useRef(null);
+  const videoCongratsRef = useRef(null);
+
+  // =============================
+  // CONFETTI EFFECT
+  // =============================
+  useEffect(() => {
+    if (screen === 3) {
+      const canvas = document.createElement("canvas");
+      Object.assign(canvas.style, {
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        zIndex: 1000,
+        pointerEvents: "none",
+      });
+
+      document.body.appendChild(canvas);
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const colors = [
+        "#fcf403",
+        "#62fc03",
+        "#f4fc03",
+        "#03e7fc",
+        "#03fca5",
+        "#a503fc",
+        "#fc03ad",
+        "#fc03c2",
+      ];
+
+      const confetti = Array.from({ length: 100 }).map(() => ({
+        x: Math.random() * canvas.width,
+        y: canvas.height,
+        r: Math.random() * 6 + 4,
+        c: colors[Math.floor(Math.random() * colors.length)],
+        vx: Math.random() * 6 - 3,
+        vy: -(Math.random() * 6 + 4),
+      }));
+
+      let frames = 0;
+
+      const animate = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        confetti.forEach((p) => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.15;
+
+          ctx.fillStyle = p.c;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        frames++;
+        frames < 120 ? requestAnimationFrame(animate) : canvas.remove();
+      };
+
+      animate();
+    }
+  }, [screen]);
+
+  // =============================
+  // VIDEO CONTROL
+  // =============================
+  useEffect(() => {
+    // Stop both videos first
+    if (videoNoRef.current) videoNoRef.current.pause();
+    if (videoCongratsRef.current) videoCongratsRef.current.pause();
+
+    // Play Screen 21 video
+    if (screen === 21 && videoNoRef.current) {
+      videoNoRef.current.currentTime = 0;
+      videoNoRef.current.play().catch((err) => {
+        console.log("Autoplay blocked:", err);
+      });
+    }
+
+    // Play Screen 3 video
+    if (screen === 3 && videoCongratsRef.current) {
+      videoCongratsRef.current.currentTime = 0;
+      videoCongratsRef.current.play().catch((err) => {
+        console.log("Autoplay blocked:", err);
+      });
+    }
+  }, [screen]);
+
+  return (
+    <section className="main-sec">
+      <div className="container">
+
+        {/* SCREEN 1 */}
+        <section className={`screen screen-1 ${screen === 1 ? "active" : ""}`}>
+          <div className="heart" onClick={() => setScreen(2)}>
+            <Image src="/images/gift.gif" alt="" width={200} height={200} />
+            <span className="heart-text">Click Here</span>
+          </div>
+        </section>
+
+        {/* SCREEN 2 */}
+        <section className={`screen screen-2 ${screen === 2 ? "active" : ""}`}>
+          <BackgroundCanvas />
+
+          <div className="inner">
+            <Image
+              src="/images/vidhi.png"
+              alt="woman holding flowers"
+              width={320}
+              height={400}
+              className="flower-image"
+              priority
+            />
+
+            <div className="content">
+              <h1>🎉 Happy Anniversary Mom & Dad 🎉</h1>
+
+              <div className="buttons">
+                <button
+                  className="btn-yes"
+                  onClick={() => setScreen(3)}
+                >
+                  Message for you both ❤️
+                </button>
+
+                {/* <button
+                  className="btn-no"
+                  onClick={() => setScreen(21)}
+                >
+                  No
+                </button> */}
+              </div>
+            </div>
+          </div>
+        </section>
+
+       
+
+        {/* SCREEN 3 */}
+        <section className={`screen screen-3 ${screen === 3 ? "active" : ""}`}>
+          <h1>🎉 Congratulations 🎉</h1>
+          <p>“You made the right ✅ choice, babe! 😄💕”</p>
+
+          <Image
+              src="/images/unnamed.jpg"
+              alt="couple image"
+              width={720}
+              height={400}
+              className="flower-image"
+              priority
+            />
+        </section>
+
+      </div>
+    </section>
+  );
+};
+
+export default Mainnew;
