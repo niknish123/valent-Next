@@ -111,7 +111,7 @@ const Mainnew = () => {
         {/* SCREEN 1 */}
         <section className={`screen screen-1 ${screen === 1 ? "active" : ""}`}>
           <div className="heart" onClick={() => setScreen(2)}>
-            <Image src="/images/gift.gif" alt="" width={200} height={200} />
+             ❤️
             <span className="heart-text">Click Here</span>
           </div>
         </section>
@@ -157,14 +157,22 @@ const Mainnew = () => {
         {/* SCREEN 3 */}
         <section className={`screen screen-3 ${screen === 3 ? "active" : ""}`}>
           <h1>🎉 Congratulations 🎉</h1>
-          <p>“You made the right ✅ choice, babe! 😄💕”</p>
+           
 
           <Image
               src="/images/unnamed.jpg"
               alt="couple image"
-              width={720}
-              height={400}
+              width={320}
+              height={300}
               className="flower-image"
+              priority
+            />
+            <Image
+              src="/images/letter.png"
+              alt="letter image"
+              width={420}
+              height={500}
+              className="letter-image"
               priority
             />
         </section>

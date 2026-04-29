@@ -20,9 +20,9 @@ body {
 }
 .main-sec{
   padding:100px 0;
-  background: #ffffff;
-   /* background: #111111; */
-      height: 100vh;
+
+   background: #111111;
+      /* height: 100vh; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -149,6 +149,7 @@ button.btn-no {
 .screen-3 h1 {
   font-size:clamp(45px,5vw,68px);
   font-family: 'Tangerine';
+  margin-bottom:0;
 
 }
 
@@ -178,7 +179,10 @@ button.btn-no {
   width: 100%;
   height:100%;
 }
-
+img.letter-image {
+    /* height: 512px; */
+    aspect-ratio: 1 / 2;
+}
 
   @keyframes heart-float {
   0% {
@@ -226,8 +230,16 @@ button.btn-no {
     width: 100%;
 }
 .flower-image {
-  margin-top:38px;
+  /* margin-top:38px; */
     height: 300px;
     object-fit: contain;
 }
+.main-sec{
+  padding:60px 0;
+}
+}
+@media (max-width:480px){
+  .screen-1 {
+    height:70vh;
+  }
 }
